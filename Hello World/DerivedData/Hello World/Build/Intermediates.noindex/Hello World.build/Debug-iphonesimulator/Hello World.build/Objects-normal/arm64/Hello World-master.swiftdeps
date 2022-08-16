@@ -1,0 +1,8 @@
+version: "Apple Swift version 5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)"
+options: "7c210285ad91bfaec743ad1cdc75c0a36a39d4994ee93a2203d801d0d6081829"
+build_start_time: [1658758731, 368877887]
+build_end_time: [1658758731, 789950847]
+inputs:
+  "/Users/dleorb0816/Desktop/Swift Study/Hello World/Hello World/AppDelegate.swift": [1658753873, 185542106]
+  "/Users/dleorb0816/Desktop/Swift Study/Hello World/Hello World/SceneDelegate.swift": [1658753873, 190145015]
+  "/Users/dleorb0816/Desktop/Swift Study/Hello World/Hello World/ViewController.swift": [1658758731, 84120750]
