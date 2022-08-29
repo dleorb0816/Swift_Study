@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ImageViewController: UIViewController {
     var isZoom = false //이미지 확대 여부를 나타내는 bool 타입의 변수
     var imgOn: UIImage? // 켜진 전구 이미지를 가지고 있는 UIImage 타입의 변수
     var imgOff: UIImage? // 꺼진 전구 이미지를 가지고 있는 UIImage 타입의 변수
