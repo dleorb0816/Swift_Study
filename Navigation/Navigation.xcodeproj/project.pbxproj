@@ -13,6 +13,9 @@
 		70EEE2FD28BCEA360045E95C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70EEE2FB28BCEA360045E95C /* Main.storyboard */; };
 		70EEE2FF28BCEA390045E95C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70EEE2FE28BCEA390045E95C /* Assets.xcassets */; };
 		70EEE30228BCEA390045E95C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70EEE30028BCEA390045E95C /* LaunchScreen.storyboard */; };
+		70EEE30A28BE36D40045E95C /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EEE30928BE36D40045E95C /* EditViewController.swift */; };
+		70EEE30D28BF94660045E95C /* lamp_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 70EEE30B28BF94650045E95C /* lamp_off.png */; };
+		70EEE30E28BF94660045E95C /* lamp_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 70EEE30C28BF94660045E95C /* lamp_on.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		70EEE2FE28BCEA390045E95C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		70EEE30128BCEA390045E95C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		70EEE30328BCEA390045E95C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70EEE30928BE36D40045E95C /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		70EEE30B28BF94650045E95C /* lamp_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lamp_off.png; sourceTree = "<group>"; };
+		70EEE30C28BF94660045E95C /* lamp_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lamp_on.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,10 +62,13 @@
 		70EEE2F428BCEA360045E95C /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				70EEE30B28BF94650045E95C /* lamp_off.png */,
+				70EEE30C28BF94660045E95C /* lamp_on.png */,
 				70EEE2F528BCEA360045E95C /* AppDelegate.swift */,
 				70EEE2F728BCEA360045E95C /* SceneDelegate.swift */,
 				70EEE2F928BCEA360045E95C /* ViewController.swift */,
 				70EEE2FB28BCEA360045E95C /* Main.storyboard */,
+				70EEE30928BE36D40045E95C /* EditViewController.swift */,
 				70EEE2FE28BCEA390045E95C /* Assets.xcassets */,
 				70EEE30028BCEA390045E95C /* LaunchScreen.storyboard */,
 				70EEE30328BCEA390045E95C /* Info.plist */,
@@ -127,7 +136,9 @@
 			files = (
 				70EEE30228BCEA390045E95C /* LaunchScreen.storyboard in Resources */,
 				70EEE2FF28BCEA390045E95C /* Assets.xcassets in Resources */,
+				70EEE30E28BF94660045E95C /* lamp_on.png in Resources */,
 				70EEE2FD28BCEA360045E95C /* Main.storyboard in Resources */,
+				70EEE30D28BF94660045E95C /* lamp_off.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70EEE30A28BE36D40045E95C /* EditViewController.swift in Sources */,
 				70EEE2FA28BCEA360045E95C /* ViewController.swift in Sources */,
 				70EEE2F628BCEA360045E95C /* AppDelegate.swift in Sources */,
 				70EEE2F828BCEA360045E95C /* SceneDelegate.swift in Sources */,
