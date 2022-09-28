@@ -23,6 +23,7 @@ class ViewController: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDele
     var progressTimer : Timer!
     
     let timePlayerSelector: Selector = #selector(ViewController.updatePlayTime)
+    let timeRecordSelector: Selector = #selector(ViewController.updateRecordTime)
 
     @IBOutlet var pvProgressPlay: UIProgressView!
     @IBOutlet var lblCurrentTime: UILabel!
@@ -204,12 +205,54 @@ class ViewController: UIViewController,AVAudioPlayerDelegate,AVAudioRecorderDele
     
     
     @IBAction func swRecordMode(_ sender: UISwitch) {
+        // if 문 스위치가 on되었을때는 녹음모드 이므로 오디오 재생을 중지하고 현재 재생시간을 00:00으로 만들고
+        // isrecordMode값을 참(true)으로 설정하고,[Recode]버튼과 녹음 시간을 활성화로 설정한다.
+        if sender.isOn {
+            audioPlayer.stop()
+            audioPlayer.currentTime = 0
+            lblRecordTime!.text = convertNSTimeInterval2String(0)
+            isRecordMode = true
+            btnRecord.isEnabled = true
+            lblRecordTime.isEnabled = true
+        } else {
+            isRecordMode = false
+            btnRecord.isEnabled = false
+            lblRecordTime.isEnabled = false
+            lblRecordTime.isEnabled = false
+            lblRecordTime.text! = convertNSTimeInterval2String(0)
+        }
+        selectAudioFile()
+        
+            if !isRecordMode {
+                initPlay()
+            } else {
+                initRecord()
+            }
+        
     }
     
     @IBAction func btnRecord(_ sender: UIButton) {
+        // 만약에 버튼 이름이 "Record"이면 녹음을 하고 버튼 이름을 'stop'으로 변경한다.
+        if (sender as AnyObject).titleLabel?.text == "Record" {
+            audioRecorder.record()
+            (sender as AnyObject).setTitle("Stop", for: UIControl.State())
+            // 녹음할때 타이머가 작동하도록 progressTimer에 Timer.schduledTimer 함수를 사용하는데,0.1초 간격으로 타이머를 생성한다.
+            progressTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: timeRecordSelector, userInfo: nil, repeats: true)
+        } else {
+            // 그렇지 않ㅇ면 현재 녹음 중이므로 녹음을 중단하고 버튼 이름을 'Stop'으로 변경한다. 그리고 [Play]버튼을 활성화하고
+            // 방금 녹음한 파일로 재생을 초기화 한다.
+            audioRecorder.stop()
+            // 녹음이 중지되면 타이머를 무효로 한다.
+            progressTimer.invalidate()
+            (sender as AnyObject).setTitle("Record", for: UIControl.State())
+            btnPlay.isEnabled = true
+            initPlay()
+        }
     }
     
-    
+    @objc func updateRecordTime() {
+        lblRecordTime.text = convertNSTimeInterval2String(audioRecorder.currentTime)
+    }
     
     
 }
