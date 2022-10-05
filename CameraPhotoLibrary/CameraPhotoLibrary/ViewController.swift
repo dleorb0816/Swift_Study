@@ -67,8 +67,75 @@ class ViewController: UIViewController, UINavigationControllerDelegate,UIImagePi
         }
     }
     @IBAction func btnRecordVideoFromCamera(_ sender: UIButton) {
+        if(UIImagePickerController.isSourceTypeAvailable(.camera)){
+            flagImageSave = true
+            
+            // 이미지 피커의 델리게이트를 self로 설정한다
+            imagePicker.delegate = self
+            // 이미지 피커의 소스 타입을 카메라로 설정한다
+            imagePicker.sourceType = .camera
+            // 이미지 피커의 미디어 타입은 "pulic.movie"로 설정
+            imagePicker.mediaTypes = ["pulic.movie"]
+            // 편집 허용 안함
+            imagePicker.allowsEditing = false
+            // 현재 뷰 컨트롤러를 imagePicker로 대체 한다.
+            present(imagePicker, animated: true, completion: nil)
+        }
+        else {
+            myAlert("Camera inaccessable", message: "Application canno access the camera.")
+        }
     }
     @IBAction func btnLoadVideoFromLibrary(_ sender: UIButton) {
+        if(UIImagePickerController.isSourceTypeAvailable(.photoLibrary)){
+            flagImageSave = false
+            
+            // 이미지 피커의 델리게이트를 self로 설정한다
+            imagePicker.delegate = self
+            // 이미지 피커의 소스 타입을 phtoLibrary로 설정한다
+            imagePicker.sourceType = .photoLibrary
+            // 이미지 피커의 미디어 타입은 "pulic.movie"로 설정
+            imagePicker.mediaTypes = ["pulic.movie"]
+            // 편집 허용 안함
+            imagePicker.allowsEditing = false
+            // 현재 뷰 컨트롤러를 imagePicker로 대체 한다.
+            present(imagePicker, animated: true, completion: nil)
+        }
+        else {
+            myAlert("Camera inaccessable", message: "Application canno access the photo album.")
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // 미디어의 종류를 확인
+        let mediaType = info[UIImagePickerController.InfoKey.mediaType] as! NSString
+        
+        // 미디어의 종류가 사진일 경우
+        if mediaType.isEqual(to: "public.image" as String){
+            // 사진을 가져와 captureImage에 저장
+            captureImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+            
+            // flagImageSave가 true이면 가져온 사진을 포토 라이브러리에 저장한다.
+            if flagImageSave {
+                UIImageWriteToSavedPhotosAlbum(captureImage, self, nil, nil)
+            }
+            
+            imgView.image = captureImage
+        }
+        // 미디어의 종류가 비디오 일경우
+        else if mediaType.isEqual(to:"public.movie" as NSString as String){
+            // flagImageSave가 true이면 촬영한 비디오를 가져와 포토 라이브러리에 저장한다.
+            if flagImageSave {
+                videoURL = (info[UIImagePickerController.InfoKey.mediaURL] as! URL)
+                
+                UISaveVideoAtPathToSavedPhotosAlbum(videoURL.relativePath, self, nil, nil)
+            }
+        }
+        // 현재의 뷰 컨트롤러를 제거한다. 즉, 부에서 이미지 피커 화면을 제거하여 초기 뷰를 보여준다.
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true,completion: nil)
     }
     
     func myAlert(_ title: String, message:String){
