@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     
     // 터치가 시작될 때 호출된다
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // 현재 발생한 터치 이벤트를 가져온다
+        // 현재 발생한 터치 이벤트를 가져온다(몇개의 손가락으로 터치가 이루어 졌는지
         let touch = touches.first! as UITouch
         
         // 메서드에서 현재 발생한 이벤트의 종류를 출력한다.
@@ -42,6 +42,10 @@ class ViewController: UIViewController {
     // 화면에서 손가락을 떼었을 때 호출됨.
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first! as UITouch
+        
+        txtMessage.text = "Touches Ended"
+        txtTapCount.text = String(touch.tapCount)
+        txtTouchCount.text = String(touches.count)
     }
 
 }
